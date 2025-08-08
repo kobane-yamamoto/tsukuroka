@@ -1,24 +1,72 @@
-# README
+## アプリケーション名 
+つくろか。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## アプリケーション概要
+「つくろか。」は、ログイン後に今週の献立一覧や買い物リストを表示し、レシピの登録や献立の編集ができるアプリです。  
+共働き家庭や忙しい人が、献立計画と買い物準備を効率的に行えるよう支援します。
 
-Things you may want to cover:
+## URL
+https://tsukuroka.onrender.com
 
-* Ruby version
+## Basic認証
+- ID：0tech
+- Password：raku2_tsukuroka
 
-* System dependencies
+## テスト用アカウント
+※新規登録ページからすぐにアカウントを作成できます。
 
-* Configuration
+## 利用方法
+1. トップページのログインページまたは新規登録ページからアカウントを作成・ログインします。
+2. ログイン後、献立が作成済みの場合、トップページに今週の献立一覧、買い物リストが表示されます。
+3. 「献立作成」ボタンから献立を作成できます。
+4. 「詳細」ボタンで献立の各レシピを閲覧できます。編集、削除ボタンも表示されます。
+5. 「レシピ登録」ボタンから新しいレシピを登録できます。
 
-* Database creation
+## アプリケーションを作成した背景
+日々の献立作成や食材管理は、多くの家庭で時間と手間がかかる作業です。  
+特に共働き世帯では、買い物や食事準備の効率化が求められます。  
+このアプリは、献立と買い物リストを連動させることで、計画的かつ無駄のない食材管理を可能にします。
 
-* Database initialization
+## 実装した機能についての画像
+### ER図
+[![Image from Gyazo](https://i.gyazo.com/bdd756a54521ceb5bc7bcfe469e9f83f.png)](https://gyazo.com/bdd756a54521ceb5bc7bcfe469e9f83f)
 
-* How to run the test suite
+### 画面遷移図
+[![Image from Gyazo](https://i.gyazo.com/9e39636cda2e090c5e45e77794d8792f.png)](https://gyazo.com/9e39636cda2e090c5e45e77794d8792f)
 
-* Services (job queues, cache servers, search engines, etc.)
+## 実装予定の機能
+- **決済機能**：クレジットカード決済を導入し、有料ユーザーを管理する
+- **有料機能**
+  - 献立登録の効率化：Webページのスクリーンショットから文字起こしを行い、自動で献立を登録
+  - パーソナライズ：ユーザーの好みに合わせた献立を提案（機械学習を導入）
 
-* Deployment instructions
+## データベース設計
+（上記ER図参照）
 
-* ...
+## 画面遷移図
+（上記画面遷移図参照）
+
+## 開発環境
+- フロントエンド：HTML, CSS, JavaScript
+- バックエンド：Ruby on Rails
+- データベース：MySQL（開発・テスト）／PostgreSQL（本番）
+- インフラ：Render（初期デプロイ）およびAWS（追加デプロイ予定）
+- テスト：RSpec
+- テキストエディタ：Visual Studio Code
+- タスク管理：GitHub Projects
+
+## ローカルでの動作方法
+git clone https://github.com/kobane-yamamoto/tsukuroka.git
+cd tsukuroka
+bundle install
+rails db:create
+rails db:migrate
+rails s
+
+## 工夫したポイント
+
+
+## 改善点
+
+
+## 制作時間
