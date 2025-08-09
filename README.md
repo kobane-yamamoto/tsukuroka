@@ -27,12 +27,7 @@ https://tsukuroka.onrender.com
 特に共働き世帯では、買い物や食事準備の効率化が求められます。  
 このアプリは、献立と買い物リストを連動させることで、計画的かつ無駄のない食材管理を可能にします。
 
-## 実装した機能についての画像
-### ER図
-[![Image from Gyazo](https://i.gyazo.com/bdd756a54521ceb5bc7bcfe469e9f83f.png)](https://gyazo.com/bdd756a54521ceb5bc7bcfe469e9f83f)
-
-### 画面遷移図
-[![Image from Gyazo](https://i.gyazo.com/9e39636cda2e090c5e45e77794d8792f.png)](https://gyazo.com/9e39636cda2e090c5e45e77794d8792f)
+## 実装した機能についての画像及び説明
 
 ## 実装予定の機能
 - **決済機能**：クレジットカード決済を導入し、有料ユーザーを管理する
@@ -41,10 +36,10 @@ https://tsukuroka.onrender.com
   - パーソナライズ：ユーザーの好みに合わせた献立を提案（機械学習を導入）
 
 ## データベース設計
-（上記ER図参照）
+[![Image from Gyazo](https://i.gyazo.com/bdd756a54521ceb5bc7bcfe469e9f83f.png)](https://gyazo.com/bdd756a54521ceb5bc7bcfe469e9f83f)
 
 ## 画面遷移図
-（上記画面遷移図参照）
+[![Image from Gyazo](https://i.gyazo.com/9e39636cda2e090c5e45e77794d8792f.png)](https://gyazo.com/9e39636cda2e090c5e45e77794d8792f)
 
 ## 開発環境
 - フロントエンド：HTML, CSS, JavaScript
@@ -64,9 +59,19 @@ rails db:migrate
 rails s
 
 ## 工夫したポイント
-
+- **材料の正規化設計**
+Ingredient と Unit を分離し、RecipeIngredient で数量を持たせることで、買い物リストの単位整合と数量合算を実現しました。
 
 ## 改善点
-
+買い物リストの粒度調整
+にんじん 1/2本 と にんじん 100g のような異単位を同一指標（g/ml/個）へ自動換算する仕組み（変換テーブル）を導入したいと考えています。
 
 ## 制作時間
+企画・要件定義：10h
+画面プロトタイプ作成：8h
+DB/ER設計：6h
+実装（レシピ・献立・買い物リスト・認証等）：42h
+テスト（RSpec）／デバッグ：12h
+デプロイ（Render設定・本番検証）：6h
+README整備・スクショ撮影：4h
+合計：約88時間
