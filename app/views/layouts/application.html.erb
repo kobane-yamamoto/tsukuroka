@@ -1,17 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <title>Tsukuroka</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>つくろか。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- 任意：フォント -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>body{font-family:'Inter',sans-serif}</style>
   </head>
 
-  <body>
-    
-    <%= yield %>
+  <!-- 縦並び＆最下部に固定フッター用の余白を確保 -->
+  <body class="min-h-screen bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-500 to-green-600 text-white shadow">
+      <div class="mx-auto max-w-6xl px-6 md:px-8 py-3 flex items-center justify-between">
+        <%= link_to "つくろか。", root_path, class:"text-2xl font-extrabold tracking-tight" %>
+        <nav class="space-x-6 text-sm">
+          <% if user_signed_in? %>
+            <%= link_to "マイページ", "#", class:"hover:opacity-90" %>
+            <%= link_to "設定", "#", class:"hover:opacity-90" %>
+            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class:"hover:opacity-90" %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path, class:"hover:opacity-90" %>
+            <%= link_to "新規登録", new_user_registration_path, class:"hover:opacity-90" %>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Flash -->
+    <div class="mx-auto max-w-6xl px-6 md:px-8">
+      <% flash.each do |k,v| %>
+        <div class="mt-4 rounded-lg px-4 py-3 <%= k.to_s == 'notice' ? 'bg-green-50 text-green-800' : 'bg-rose-50 text-rose-800' %>"><%= v %></div>
+      <% end %>
+    </div>
+
+    <!-- Main container（中央に寄せ、左右に適切な余白） -->
+    <main class="mx-auto max-w-6xl px-6 md:px-8 py-10 pb-20">
+      <%= yield %>
+    </main>
+
+    <!-- 著作権リボン：最下部に固定 -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-slate-900 text-slate-100 z-50">
+      <div class="mx-auto max-w-6xl px-6 md:px-8 py-2 text-center text-xs md:text-sm">
+        © <%= Time.zone.now.year %> つくろか。 All rights reserved.
+      </div>
+    </footer>
   </body>
 </html>

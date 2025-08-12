@@ -1,0 +1,38 @@
+<div class="min-h-[80vh] flex items-center justify-center px-4">
+  <div class="w-full max-w-md">
+    <div class="mb-6 text-center">
+      <h1 class="text-3xl font-extrabold text-gray-900">つくろか。</h1>
+      <p class="mt-2 text-gray-500">おかえりなさい。ログインしてください。</p>
+    </div>
+
+    <div class="card p-6">
+      <%= form_with(scope: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="mb-4">
+          <%= label_tag :email, "メールアドレス", class: "label" %>
+          <%= email_field_tag :email, nil, autofocus: true, autocomplete: "email", class: "input" %>
+        </div>
+
+        <div class="mb-2">
+          <%= label_tag :password, "パスワード", class: "label" %>
+          <%= password_field_tag :password, nil, autocomplete: "current-password", class: "input" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="mb-6 flex items-center gap-2">
+            <%= check_box_tag :remember_me, "1", false, class: "h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500" %>
+            <%= label_tag :remember_me, "ログイン状態を保持する", class: "text-sm text-gray-700" %>
+          </div>
+        <% else %>
+          <div class="mb-6"></div>
+        <% end %>
+        <%= f.submit "ログイン", class: "btn-main w-full" %>
+      <% end %>
+
+      <div class="mt-6 text-sm text-center text-gray-600">
+        アカウント未作成の方は
+        <%= link_to "新規登録", new_registration_path(resource_name),
+          class:"font-bold underline text-blue-700 hover:text-blue-800" %>
+      </div>
+    </div>
+  </div>
+</div>
