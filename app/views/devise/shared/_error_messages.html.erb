@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="mb-4 rounded-lg bg-rose-50 border border-rose-200 p-3 text-rose-800 text-sm">
+    <p class="font-semibold mb-1"><%= pluralize(resource.errors.count, "件") %>のエラーがあります</p>
+    <ul class="list-disc list-inside">
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,96 @@
+<div class="min-h-[80vh] flex items-start justify-center px-4 py-8">
+  <div class="w-full max-w-2xl">
+    <div class="mb-6">
+      <h1 class="text-2xl md:text-3xl font-extrabold">ユーザー情報入力</h1>
+    </div>
+
+    <div class="card p-6 relative z-10" style="opacity:1; visibility:visible; overflow:visible;">
+      <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <!-- ニックネーム -->
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <label class="label">ニックネーム</label>
+          </div>
+          <%= f.text_field :nickname, class:"input", placeholder:"例) つくろか太郎", maxlength: 40 %>
+        </div>
+
+        <!-- メール -->
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <label class="label">メールアドレス</label>
+          </div>
+          <%= f.email_field :email, class:"input", placeholder:"PC・携帯どちらでも可", autofocus: true, autocomplete:"email" %>
+        </div>
+
+        <!-- パスワード -->
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <label class="label">パスワード</label>
+          </div>
+          <%= f.password_field :password, class:"input", placeholder:"6文字以上の半角英数字", autocomplete:"new-password" %>
+        </div>
+
+        <!-- パスワード確認 -->
+        <div class="mb-6">
+          <div class="flex items-center gap-2 mb-1">
+            <label class="label">パスワード（確認）</label>
+          </div>
+          <%= f.password_field :password_confirmation, class:"input", placeholder:"同じパスワードを入力してください", autocomplete:"new-password" %>
+        </div>
+
+        <!-- 氏名（全角） -->
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <label class="label">お名前（全角）</label>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <%= f.text_field :last_name,  class:"input", placeholder:"例) 山田" %>
+            <%= f.text_field :first_name, class:"input", placeholder:"例) 太郎" %>
+          </div>
+        </div>
+
+        <!-- 氏名カナ（全角） -->
+        <div class="mb-5">
+          <div class="flex items-center gap-2 mb-1">
+            <label class="label">お名前カナ（全角）</label>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <%= f.text_field :last_name_kana,  class:"input", placeholder:"例) ヤマダ" %>
+            <%= f.text_field :first_name_kana, class:"input", placeholder:"例) タロウ" %>
+          </div>
+        </div>
+
+        <!-- 生年月日 -->
+        <div class="mb-6">
+          <div class="flex items-center gap-2 mb-1">
+            <label class="label">生年月日</label>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <%= f.date_select :birthday,
+              { use_month_numbers: true,
+                start_year: 1930,
+                end_year: Time.zone.now.year - 5,
+                include_blank: true,
+                prompt: { year: '--', month: '--', day: '--' },
+                order: [:year, :month, :day],
+                date_separator: '/' },
+              { class: "input !w-auto px-2 py-2" } %>
+          </div>
+        </div>
+
+        <!-- 送信 -->
+        <%= f.submit "登録",
+              class: "btn w-full border-2 border-green-600 text-green-700 bg-white font-bold text-base py-3 hover:bg-green-50" %>
+      <% end %>
+
+      <!-- 下部リンク：ログインへ -->
+      <div class="mt-6 text-sm text-center text-gray-600">
+        すでにアカウントをお持ちの方は
+        <%= link_to "ログイン", new_session_path(resource_name),
+              class:"font-bold underline text-blue-700 hover:text-blue-800" %>
+      </div>
+    </div>
+  </div>
+</div>
