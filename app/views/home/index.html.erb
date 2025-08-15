@@ -1,7 +1,7 @@
 <div class="p-6">
   <% if user_signed_in? %>
     <h1 class="text-2xl font-bold mb-4">
-      ようこそ、<%= current_user.respond_to?(:name) && current_user.name.present? ? current_user.name : current_user.email %> さん
+      ようこそ、<%= current_user.nickname %> さん
     </h1>
     <p class="mb-4">今週の献立や買い物リストを作成できます。</p>
 

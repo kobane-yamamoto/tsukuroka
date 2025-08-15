@@ -1,11 +1,61 @@
 @import "tailwindcss";
 
+/* Components */
 @layer components {
   .card     { @apply bg-white rounded-2xl shadow-sm border border-gray-100; }
   .btn      { @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium shadow-sm transition; }
   .btn-main { @apply btn bg-green-600 text-white hover:bg-green-700; }
   .btn-ghost{ @apply btn bg-gray-100 text-gray-800 hover:bg-gray-200; }
-  .input    { @apply w-full rounded-lg border border-gray-300 bg-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500; }
+
+  /* ✅ 強化版 input（要素＋クラス指定＋!important） */
+  input.input,
+  select.input,
+  textarea.input {
+    @apply block w-full rounded-lg px-3 py-2
+           !border !border-gray-300 !bg-white
+           focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+
   .label    { @apply block text-sm font-medium text-gray-700 mb-1; }
   .link     { @apply text-green-700 hover:text-green-800 underline; }
+  .form-grid{ @apply grid gap-6; }
+
+  /* ナビの間隔（デフォルト） */
+  .nav-spaced > a + a { margin-left: 2.5rem; }
+  .nav-spaced a { padding: 0.25rem 0.5rem; }
+
+  /* 常時表示の保険 */
+  .force-visible input,
+  .force-visible select,
+  .force-visible textarea {
+    @apply block w-full;
+    opacity: 1 !important;
+    visibility: visible !important;
+    height: auto !important;
+    display: block !important;
+  }
+}
+
+/* md 以上でナビの間隔を広げる */
+@layer components {
+  @screen md {
+    .nav-spaced > a + a { margin-left: 3.5rem; }
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .clear-children > * { clear: both; }
+}
+
+/* === すべてのフォーム要素に最低限の見た目を強制（クラス付け忘れ対策）=== */
+@layer base {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input:not([type]),
+  select,
+  textarea {
+    @apply block w-full border border-gray-300 rounded-lg bg-white px-3 py-2;
+  }
 }
