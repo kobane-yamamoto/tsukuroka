@@ -11,3 +11,17 @@ input.input:focus, select.input:focus, textarea.input:focus {
   outline:0;
   box-shadow:0 0 0 2px rgba(59,130,246,.5);
 }
+
+/* 生年月日（date_select）を横並びに */
+.date-inline {
+  display: flex;
+  align-items: center;
+  gap: .5rem;             /* セレクト間の間隔 */
+}
+
+.date-inline select.input {
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 5.5rem;      /* お好みで調整 */
+  padding: .5rem .6rem;
+}

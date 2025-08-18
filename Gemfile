@@ -72,5 +72,3 @@ group :production do
 end
 
 gem 'devise'
-
-gem "tailwindcss-rails"

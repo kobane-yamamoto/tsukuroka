@@ -53,16 +53,16 @@
         <!-- 生年月日 -->
         <div class="field">
           <label class="label">生年月日</label>
-          <div>
+
+          <div class="date-inline">
             <%= f.date_select :birthday,
               { use_month_numbers: true,
                 start_year: 1930,
                 end_year: Time.zone.now.year - 5,
-                include_blank: true,
-                prompt: { year: '--', month: '--', day: '--' },
+                prompt: { year: '--', month: '--', day: '--' },  # ← placeholder
                 order: [:year, :month, :day],
-                date_separator: '/' },
-              { class: "input", style: "width:auto; padding:.5rem .5rem;" } %>
+                date_separator: ' / ' },
+              { class: "input" } %>
           </div>
         </div>
 
