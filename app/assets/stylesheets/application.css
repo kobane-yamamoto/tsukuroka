@@ -1,14 +1,6 @@
-input.input, select.input, textarea.input {
-  display: block;
-  width: 100%;
-  border: 1px solid #d1d5db !important;   /* 枠を強制 */
-  background: #fff !important;            /* 白背景を強制 */
-  border-radius: 0.5rem;                  /* 8px */
-  padding: 0.5rem 0.75rem;                /* 8px 12px */
-  outline: 0;
-}
-
-input.input:focus, select.input:focus, textarea.input:focus {
-  outline: 0;
-  box-shadow: 0 0 0 2px rgba(59,130,246,.5); /* 青リング */
-}
+/*
+ *= require layout
+ *= require devise
+ *= require forms
+ *= require home
+ */

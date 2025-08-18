@@ -1,26 +1,41 @@
-<div class="p-6">
-  <% if user_signed_in? %>
-    <h1 class="text-2xl font-bold mb-4">
-      ようこそ、<%= current_user.nickname %> さん
-    </h1>
-    <p class="mb-4">今週の献立や買い物リストを作成できます。</p>
+<div class="greeting container-center">
+  <h1 class="h1 mb-2">ようこそ、<%= current_user.nickname.presence || current_user.email %> さん</h1>
+</div>
 
-    <div class="space-x-4">
-      <%= link_to "マイページ編集", edit_user_registration_path,
-                  class: "inline-block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded" %>
-      <%= link_to "ログアウト", destroy_user_session_path,
-                  data: { turbo_method: :delete },
-                  class: "inline-block bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded" %>
-    </div>
-  <% else %>
-    <h1 class="text-2xl font-bold mb-4">ようこそ、つくろか。へ</h1>
-    <p class="mb-4">ログインして献立作成を始めましょう。</p>
+<div class="home-dashboard">
+  <div class="home-container">
+    <div class="home-split">
+      <!-- 左：今週の献立 -->
+      <section class="panel menu-panel">
+        <div class="menu-header">
+          <h2 class="menu-title">今週の献立</h2>
+          <button id="regenerateMenuBtn" class="btn-rebuild" type="button">献立を再生成</button>
+        </div>
 
-    <div class="space-x-4">
-      <%= link_to "ログイン", new_user_session_path,
-                  class: "inline-block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded" %>
-      <%= link_to "新規登録", new_user_registration_path,
-                  class: "inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" %>
+        <div class="menu-grid">
+          <article class="menu-card"><div class="thumb pastel-mint"></div><div class="menu-name">月曜日: 和風ハンバーグ</div><div class="menu-note">大根おろしとポン酢でさっぱりと。</div></article>
+          <article class="menu-card"><div class="thumb pastel-sand"></div><div class="menu-name">火曜日: 鶏肉のトマト煮</div><div class="menu-note">野菜たっぷり、栄養満点。</div></article>
+          <article class="menu-card"><div class="thumb pastel-sky"></div><div class="menu-name">水曜日: 鯖の味噌煮</div><div class="menu-note">ご飯が進む定番メニュー。</div></article>
+          <article class="menu-card"><div class="thumb pastel-rose"></div><div class="menu-name">木曜日: 豚バラ大根</div><div class="menu-note">優しい味で体も温まる。</div></article>
+          <article class="menu-card"><div class="thumb pastel-lime"></div><div class="menu-name">金曜日: カレーライス</div><div class="menu-note">みんな大好き、定番の味。</div></article>
+          <article class="menu-card"><div class="thumb pastel-ivory"></div><div class="menu-name">土曜日: 手巻き寿司</div><div class="menu-note">家族で楽しめるパーティーメニュー。</div></article>
+          <article class="menu-card"><div class="thumb pastel-pink"></div><div class="menu-name">日曜日: お好み焼き</div><div class="menu-note">ホットプレートでワイワイ。</div></article>
+        </div>
+      </section>
+
+      <!-- 右：買い物リスト -->
+      <aside class="panel shop-panel">
+        <div class="shop-header">
+          <h2 class="shop-title">買い物リスト</h2>
+          <button id="togglePurchasedBtn" class="btn-toggle" type="button">購入済みを非表示</button>
+        </div>
+
+        <div class="shop-scroll">
+          <!-- …カテゴリ・リストは省略（あなたの現状データでOK）… -->
+        </div>
+
+        <button id="markSelectedPurchasedBtn" class="btn-commit" type="button">選択したものを購入済みにする</button>
+      </aside>
     </div>
-  <% end %>
+  </div>
 </div>
