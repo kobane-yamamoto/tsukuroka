@@ -1,0 +1,85 @@
+:root{
+  --ink:#111827; --muted:#6b7280; --border:#e5e7eb;
+  --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-300:#d1d5db; --gray-700:#374151;
+  --green-600:#16a34a; --green-700:#15803d;
+  --blue-600:#2563eb;  --blue-700:#1d4ed8;
+  --red-600:#dc2626;
+}
+
+/* ページレイアウト */
+.auth-page{
+  min-height:80vh;
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:2rem 1rem;
+}
+.auth-page--left{ justify-content:flex-start; }
+
+.auth-container{ width:100%; max-width:40rem; }          /* ~640px */
+.auth-container--wide{ max-width:42rem; }                 /* new/edit用 */
+
+/* カード */
+.auth-card{
+  background:#fff; border:1px solid var(--border);
+  border-radius:16px; box-shadow:0 1px 2px rgba(0,0,0,.06);
+  padding:1.5rem;
+}
+
+/* タイトル / サブ */
+.page-title{ font-size:clamp(1.375rem, 1rem + 1vw, 1.75rem); font-weight:800; margin:0 0 1rem; }
+.page-sub  { font-size:.875rem; color:var(--muted); margin:.25rem 0 0; }
+
+/* ラベル / インプット / ヘルプ */
+.label{ display:block; font-size:.875rem; font-weight:600; color:var(--gray-700); margin-bottom:.25rem; }
+.input{
+  display:block; width:100%;
+  border:1px solid var(--gray-300); border-radius:8px; background:#fff;
+  padding:.5rem .75rem; transition:border-color .15s, box-shadow .15s;
+}
+.input:focus{ outline:none; border-color:#93c5fd; box-shadow:0 0 0 2px rgba(59,130,246,.35); }
+.help{ font-size:.75rem; color:#9ca3af; margin-top:.25rem; min-height:1rem; }
+
+/* 2列グリッド（氏名など） */
+.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+@media (max-width: 768px){ .grid-2{ grid-template-columns:1fr; } }
+
+/* ボタン */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:10px; padding:.6rem 1rem; font-weight:700;
+  transition:transform .15s, background-color .15s, color .15s, border-color .15s;
+}
+.btn:hover{ transform:translateY(-1px); }
+
+.btn-green       { background:var(--green-600); color:#fff; border:1px solid transparent; }
+.btn-green:hover { background:var(--green-700); }
+
+.btn-outline-green{
+  background:#fff; color:#166534; border:2px solid var(--green-600);
+}
+.btn-outline-green:hover{ background:#f0fdf4; }
+
+.btn-blue        { background:var(--blue-600); color:#fff; border:1px solid transparent; }
+.btn-blue:hover  { background:var(--blue-700); }
+
+.btn-outline-blue{
+  background:#fff; color:var(--blue-600); border:1px solid var(--blue-600);
+}
+.btn-outline-blue:hover{ background:#eff6ff; }
+
+/* フォームの間隔 */
+.field{ margin-bottom:1.25rem; }
+.actions{ margin-top:1rem; }
+
+/* リンク */
+.link{ color:#1d4ed8; text-decoration:underline; font-weight:700; }
+.link:hover{ color:#1e40af; }
+
+/* 既存 .card/.btn を使っていても崩さない保険（任意） */
+.card{ background:#fff; border-radius:16px; border:1px solid var(--border); box-shadow:0 1px 2px rgba(0,0,0,.06); }
+.btn{ box-shadow:0 1px 2px rgba(0,0,0,.05); }
+
+/* エラー表示（devise/shared/error_messages 用の最低限） */
+#error_explanation, .error-messages{
+  border:1px solid var(--red-600); background:#fef2f2; color:#991b1b;
+  border-radius:10px; padding:1rem; margin-bottom:1rem;
+}

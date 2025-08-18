@@ -1,43 +1,41 @@
-<div class="min-h-[80vh] flex items-start justify-start px-4">
-  <div class="w-full max-w-md">
-    <div class="mb-6 text-left">
-      <h1 class="text-3xl font-extrabold text-gray-900">つくろか。</h1>
-      <p class="mt-2 text-gray-500">メールアドレスとパスワードを入力してください。</p>
+<div class="auth-page auth-page--left">
+  <div class="auth-container" style="max-width:28rem;">
+    <div class="mb-6">
+      <h1 class="page-title" style="font-size:1.75rem;">つくろか。</h1>
+      <p class="page-sub">メールアドレスとパスワードを入力してください。</p>
     </div>
 
-    <div class="card p-6">
+    <div class="auth-card">
       <%= form_with(model: resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="mb-4">
-          <%= f.label :email, "メールアドレス", class: "block text-sm font-semibold mb-1" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email",
-            class: "w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+        <div class="field">
+          <%= f.label :email, "メールアドレス", class: "label" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
         </div>
 
-        <div class="mb-4">
-          <%= f.label :password, "パスワード", class: "block text-sm font-semibold mb-1" %>
-          <%= f.password_field :password, autocomplete: "current-password",
-            class: "w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+        <div class="field">
+          <%= f.label :password, "パスワード", class: "label" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
-          <div class="mb-6 flex items-center gap-2">
-            <%= f.check_box :remember_me, class: "h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500" %>
-            <%= f.label :remember_me, "ログイン状態を保持する", class: "text-sm text-gray-700" %>
+          <div class="field" style="display:flex; align-items:center; gap:.5rem; margin-bottom:1.5rem;">
+            <%= f.check_box :remember_me, class: "" %>
+            <%= f.label :remember_me, "ログイン状態を保持する", class: "" %>
           </div>
         <% else %>
-          <div class="mb-6"></div>
+          <div class="field" style="margin-bottom:1.5rem;"></div>
         <% end %>
 
-        <%= f.submit "ログイン",
-          class: "w-full border border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded hover:bg-blue-50" %>
+        <div class="actions">
+          <%= f.submit "ログイン", class:"btn btn-outline-blue", style:"width:100%;" %>
+        </div>
       <% end %>
 
-      <div class="mt-6 text-sm text-left text-gray-600">
+      <div style="margin-top:1.25rem; font-size:.9rem; color:#6b7280;">
         アカウント未作成の方は
-        <%= link_to "新規登録", new_registration_path(resource_name),
-          class: "font-bold underline text-blue-700 hover:text-blue-800" %>
+        <%= link_to "新規登録", new_registration_path(resource_name), class:"link" %>
       </div>
     </div>
   </div>

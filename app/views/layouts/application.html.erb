@@ -6,55 +6,49 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "home", "data-turbo-track": "reload", defer: true %>
     <%= javascript_importmap_tags %>
 
     <!-- 任意：フォント -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-      /* ← 最優先で sticky footer と全幅ヘッダーを強制 */
-      html, body { height: 100%; }
-      body#app { min-height: 100svh; display: flex; flex-direction: column; }
-      header.site { width: 100%; display:block; }
-      main.site { flex: 1 0 auto; }
-      footer.site { margin-top: auto; width: 100%; display:block; }
-    </style>
   </head>
 
-  <body id="app" class="bg-gray-50 text-gray-800">
+  <body id="app">
     <!-- Header -->
-    <header class="site bg-gradient-to-r from-green-500 to-green-600 text-white shadow">
-      <div class="mx-auto max-w-6xl px-6 md:px-8 py-3"
-           style="display:flex;align-items:center;justify-content:space-between;width:100%;">
-        <%= link_to "つくろか。", root_path, class:"text-2xl font-extrabold tracking-tight" %>
-        <nav class="text-sm" style="display:flex;align-items:center;gap:1.5rem;">
+    <header class="site site-header">
+      <div class="container header-inner">
+        <%= link_to "つくろか。", root_path, class: "brand" %>
+
+        <nav class="site-nav">
           <% if user_signed_in? %>
             <%= link_to "ログアウト", destroy_user_session_path,
-                  data: { turbo_method: :delete }, class:"hover:opacity-90" %>
+                  data: { turbo_method: :delete }, class: "nav-link" %>
           <% else %>
-            <%= link_to "ログイン", new_user_session_path, class:"hover:opacity-90" %>
-            <%= link_to "新規登録", new_user_registration_path, class:"hover:opacity-90" %>
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
           <% end %>
         </nav>
       </div>
     </header>
 
     <!-- Flash -->
-    <div class="mx-auto max-w-6xl px-6 md:px-8">
+    <div class="container flash-wrap">
       <% flash.each do |k,v| %>
-        <div class="mt-4 rounded-lg px-4 py-3 <%= k.to_s == 'notice' ? 'bg-green-50 text-green-800' : 'bg-rose-50 text-rose-800' %>"><%= v %></div>
+        <div class="flash <%= k.to_s == 'notice' ? 'is-success' : 'is-danger' %>"><%= v %></div>
       <% end %>
     </div>
 
-    <!-- Main（残り高さを埋める） -->
-    <main class="site w-full px-6 md:px-8 py-10">
-      <%= yield %>
+    <!-- Main -->
+    <main class="site">
+      <div class="container main-content">
+        <%= yield %>
+      </div>
     </main>
 
-    <!-- Footer（最下部に固定：スクロール時は下へ押し出し） -->
-    <footer class="site" style="background:#1f2937; position:relative; z-index:1;">
-      <div style="color:#fff; text-align:center; padding:8px 0; line-height:1.2; font-size:12px;">
+    <!-- Footer -->
+    <footer class="site site-footer">
+      <div class="inner">
         &copy; <%= Time.zone.now.year %> つくろか。 All rights reserved.
       </div>
     </footer>

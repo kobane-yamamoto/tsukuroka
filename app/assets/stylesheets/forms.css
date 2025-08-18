@@ -1,0 +1,13 @@
+input.input, select.input, textarea.input {
+  display:block;
+  width:100%;
+  border:1px solid #d1d5db !important;
+  background:#fff !important;
+  border-radius:0.5rem;
+  padding:0.5rem 0.75rem;
+  outline:0;
+}
+input.input:focus, select.input:focus, textarea.input:focus {
+  outline:0;
+  box-shadow:0 0 0 2px rgba(59,130,246,.5);
+}
