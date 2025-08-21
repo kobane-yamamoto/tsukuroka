@@ -51,6 +51,3 @@
 .buy-item{ display:flex; align-items:center; gap:8px; }
 .buy-item input{ width:18px; height:18px; }
 .buy-item[data-purchased="true"] label{ text-decoration:line-through; opacity:.55; }
-
-.btn-commit{ width:100%; background:var(--green); color:#fff; border:none; padding:12px 16px; border-radius:9999px; font-weight:800; }
-.btn-commit:hover{ background:var(--green-h); }
